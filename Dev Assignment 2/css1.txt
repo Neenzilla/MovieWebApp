@@ -1,0 +1,51 @@
+/* Form */
+.container-form{
+    width: 100%;
+    padding: 25px;
+}
+
+/* Dropdown Menu */
+.container-dropdown{
+    width: 100%;
+    padding: 25px;
+}
+
+.hide{
+    max-height: 0 !important;
+}
+
+.dropdown-menu{
+    border: 0.1em solid black;
+    width: 10em;
+    margin-bottom: 1em; 
+}
+
+.dropdown title{
+    
+}
+
+/* Search Result */
+#result{
+    width: 100%;
+    padding: 25px;
+
+}
+
+
+
+
+/* #movies img, #movie img{
+    width: 100%;
+}
+
+
+
+@media(min-width: 960px){
+    #movies .col-md-3 .well{
+        height: 390px;
+    }
+    
+    #movies .col-md-3 img{
+        height: 240px;
+    }
+} */
