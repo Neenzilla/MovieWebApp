@@ -1,0 +1,164 @@
+<!-- 
+    Nina Robichaud
+    4/6/21
+    Interactive Web Design
+    Dev Assignment 2
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Assignment 2; Homepage</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="//https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+
+<!-- JavaScript file & jQuery -->
+<!-- <script src="app.js"></script> -->
+    <!-- Reference: https://www.youtube.com/watch?v=8iuPNq553U0 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    
+<script>
+
+// Dropdown menu function
+// $(document).ready(function(){
+//     //API key
+//     var key = "742e2207"
+//     // target dropdown options
+//     $("#movieForm1").submit(function(event){
+//         event.preventDefault()
+
+//         // Variables
+
+//         var hope = fetch("http://www.omdbapi.com/?t="+key+"star+wars");
+//         var empire = fetch("http://www.omdbapi.com/?t="+key+"empire+strikes+back");
+//         var return = fetch("http://www.omdbapi.com/?t="+key+"return+of+the+jedi");
+
+//         var result = ""
+
+//                 // var url = "http://www.omdbapi.com/?apikey="+key
+
+//         // AJAX request via jQuery
+//         $.ajax({
+//             // making a GET request
+//             method: "GET",
+//             // concatenate URL & movie variable
+//             hope
+//             // reroute successful GET request to console 
+//             success:function(data){
+//                 console.log(data)
+//         })
+//     })
+// })
+
+// Input field function
+$(document).ready(function(){
+    // API key
+    var key = "742e2207"
+    // target input field 
+    $("#movieForm2").submit(function(event){
+        // prevent auto submission of form
+        event.preventDefault()
+
+        // Variables
+        var movie = $("#movie2").val()
+
+        var result = ""
+
+        var url = "http://www.omdbapi.com/?apikey="+key
+
+        // AJAX request via jQuery
+        $.ajax({
+            // making a GET request
+            method:"GET",
+            // concatenate URL & movie variable
+            url:url+"&t="+movie,
+            // reroute successful GET request to console 
+            success:function(data){
+                console.log(data)
+
+                // Inline responsive HTML to dynamically display info
+                result = ` 
+                
+                    <img style="float:left" class="img-thumbnail" width="200" height="250" src="${data.Poster}"/>
+                    <h2>Title: ${data.Title}</h2>
+                    <h2>Director: ${data.Director}</h2>
+                    <h2>Plot: ${data.Plot}</h2>
+                    <h2>Actors/Actresses: ${data.Actors}</h2>
+                `;
+
+                // Display results
+                $("#result").html(result)
+
+            }
+        })
+    })        
+})
+</script>
+
+
+
+</head>
+<body>
+
+<!-- Header -->
+        <header>
+            <div class="container-nav">
+                <h1 class="text-center mt-5">Movie Web App</h1>
+                <div class="container-logo">
+                    <img class=logo
+                         src="images/baby-yoda.gif"
+                         alt="Baby Yoda in a blaze of glory">   
+                </div>
+
+                <nav> 
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                    </ul>
+            </div>
+            </nav>              
+        </header>
+
+
+<!-- Dropdown Menu & Input field -->
+    <!-- References: 
+        https://www.freecodecamp.org/news/how-to-create-a-dropdown-menu-with-css-and-javascript/ 
+        https://stackoverflow.com/questions/18309059/drop-down-menu-text-field-in-one 
+        https://stackoverflow.com/questions/53758974/how-to-pick-different-api-calls-depending-on-the-drop-down-option
+        https://jsfiddle.net/abru77mm/ -->
+    
+    <div class="form-group">
+
+            <form id="movieForm1">
+                <label>Look Up Star Wars IV, V, or VI: </label> </br>
+                    <select>
+                        <option>Dropdown Option</option>
+                        <option id="hope">A New Hope</option>
+                        <option id="empire">The Empire Strikes Back</option>
+                        <option id="return">Return of the Jedi</option>
+                    </select>
+                    <div class="form-group">
+                        <button id="btn dropdown-btn btn-block">Search Dropdown</button>
+                    </div>   
+                </form>
+
+            <form id="movieForm2" autocomplete="off">
+                <label>Look Up Movie: </label>
+                <input class="form-control" type="text" id="movie2" placeholder="Input Option">
+                <div class="form-group">
+                    <button class="btn input-btn btn-block">Search Input</button> </br>
+                </div>
+            </form>
+
+    </div>
+
+
+<!-- Search Result -->
+    <div id="result"></div>
+       
+</body>
+</html>
